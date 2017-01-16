@@ -8,16 +8,18 @@ namespace CoreConfigTest.Controllers
 {
     public class HomeController : Controller
     {
-        Configuration.Configuration _config;
+        Configuration.ConfigValues _config;
+        Configuration.SecretValues _secrets;
 
-        public HomeController(Configuration.Configuration config = null)
+        public HomeController(Configuration.ConfigValues config = null, Configuration.SecretValues secrets = null)
         {
-            _config = config ?? Configuration.Configuration;
+            _config = config ?? Configuration.Configuration.Config;
+            _secrets = secrets ?? Configuration.Configuration.Secrets;
         }
 
         public IActionResult Index()
         {
-            ViewData["Message"] = Configuration.Configuration.Secrets.SecretA;
+            ViewData["Message"] = _secrets.SecretA;
             return View();
         }
 

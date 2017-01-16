@@ -14,8 +14,8 @@ namespace CoreConfigTest.Configuration
 
     public class Configuration
     {
-        public SecretValues Secrets { get; private set; }
-        public ConfigValues Config { get; private set; }
+        public static SecretValues Secrets { get; private set; }
+        public static ConfigValues Config { get; private set; }
 
         public static void AddUserSecrets()
         {
@@ -55,7 +55,7 @@ namespace CoreConfigTest.Configuration
                 string userName = ScrubUserName(System.Security.Principal.WindowsIdentity.GetCurrent().Name);
                 secretsFile = string.Format(FileBase, userName, folderName);
             }
-            //var path = @"C:\Users\andrehal\AppData\Roaming\Microsoft\UserSecrets\aspnet-CoreConfigTest-887aa831-cf73-49f4-affc-a4ac3f4b262d\secrets.json";
+
             return secretsFile;
         }
     }
