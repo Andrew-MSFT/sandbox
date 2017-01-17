@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace CoreConfigTest.Configuration
 {
-    public class Secrets
+    public class Settings
     {
         private Dictionary<string, object> _values;
 
@@ -16,27 +13,27 @@ namespace CoreConfigTest.Configuration
                 return _values[key];
             }
         }
-        public Secrets()
+        public Settings()
         {
             _values = new Dictionary<string, object>();
         }
 
-        public Secrets(IEnumerable<KeyValuePair<string, object>> values)
+        public Settings(IEnumerable<KeyValuePair<string,object>> values)
         {
             _values = new Dictionary<string, object>();
-            AddSecrets(values);
+            AddSettings(values);
         }
 
-        public void AddSecret(string key, object value)
+        public void AddSetting(string key, object value)
         {
             _values.Add(key, value);
         }
 
-        public void AddSecrets(IEnumerable<KeyValuePair<string, object>> values)
+        public void AddSettings(IEnumerable<KeyValuePair<string,object>> values)
         {
-            foreach (var val in values)
+            foreach(var val in values)
             {
-                AddSecret(val.Key, val.Value);
+                AddSetting(val.Key, val.Value);
             }
         }
     }

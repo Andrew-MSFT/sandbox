@@ -8,24 +8,24 @@ namespace CoreConfigTest.Controllers
 {
     public class HomeController : Controller
     {
-        Configuration.ConfigValues _config;
-        Configuration.SecretValues _secrets;
+        Configuration.Settings _config;
+        Configuration.Secrets _secrets;
 
-        public HomeController(Configuration.ConfigValues config = null, Configuration.SecretValues secrets = null)
+        public HomeController(Configuration.Settings config = null, Configuration.Secrets secrets = null)
         {
-            _config = config ?? Configuration.Configuration.Config;
-            _secrets = secrets ?? Configuration.Configuration.Secrets;
+            _config = config ?? Configuration.ConfigurationManager.SettingValues;
+            _secrets = secrets ?? Configuration.ConfigurationManager.SecretValues;
         }
 
         public IActionResult Index()
         {
-            ViewData["Message"] = _secrets.SecretA;
+            ViewData["Message"] = _secrets["SecretA"];
             return View();
         }
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = _config["Logging:LogLevel:Default"];
 
             return View();
         }

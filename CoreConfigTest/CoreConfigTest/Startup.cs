@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using CoreConfigTest.Data;
 using CoreConfigTest.Models;
 using CoreConfigTest.Services;
+using CoreConfigTest;
 
 namespace CoreConfigTest
 {
@@ -28,7 +29,8 @@ namespace CoreConfigTest
             {
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets();
-                CoreConfigTest.Configuration.Configuration.AddUserSecrets();
+                CoreConfigTest.Configuration.ConfigurationManager.AddUserSecrets();
+                CoreConfigTest.Configuration.ConfigurationManager.AddJsonFile("appsettings.json");
             }
 
             builder.AddEnvironmentVariables();
